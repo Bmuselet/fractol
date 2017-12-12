@@ -6,7 +6,7 @@
 #    By: bmuselet <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/11/28 15:19:34 by bmuselet          #+#    #+#              #
-#    Updated: 2017/12/12 17:46:56 by bmuselet         ###   ########.fr        #
+#    Updated: 2017/12/12 18:15:02 by bmuselet         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,6 +14,8 @@ NAME = fractol
 SRCS = main.c\
 	   ft_keycode.c\
 	   mandelbrot.c\
+	   buddhabrot.c\
+	   julia.c\
 
 OBJS = $(SRCS:.c=.o)
 INC = libft.h\

@@ -6,7 +6,7 @@
 /*   By: bmuselet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/12 14:09:05 by bmuselet          #+#    #+#             */
-/*   Updated: 2017/12/12 17:46:41 by bmuselet         ###   ########.fr       */
+/*   Updated: 2017/12/12 18:15:22 by bmuselet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,5 +40,7 @@ typedef struct		s_mlx
 
 int	ft_key_events(int keycode, t_mlx *mlx);
 int	mandelbrot(void);
+int	buddhabrot(void);
+int	julia(void);
 
 #endif
