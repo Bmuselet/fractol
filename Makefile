@@ -6,7 +6,7 @@
 #    By: bmuselet <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/11/28 15:19:34 by bmuselet          #+#    #+#              #
-#    Updated: 2017/12/12 18:15:02 by bmuselet         ###   ########.fr        #
+#    Updated: 2017/12/13 12:29:30 by bmuselet         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,12 +16,14 @@ SRCS = main.c\
 	   mandelbrot.c\
 	   buddhabrot.c\
 	   julia.c\
+	   ft_fill_pixel.c\
 
 OBJS = $(SRCS:.c=.o)
 INC = libft.h\
 fractol.h\
 CC = cc
-FLAGS = -lmlx -framework OpenGl -framework AppKit
+FLAGS1 := -lmlx -framework OpenGl -framework AppKit
+FLAGS2 := -Wall -Werror -Wextra
 LIB_PATH = libft/
 LIB = libft/libft.a
 
@@ -32,8 +34,8 @@ all : $(NAME)
 $(NAME) :
 	@echo "\033[1;91mCompilation...\033[0m"
 	@make re -C $(LIB_PATH)
-	@$(CC) $(FLAGS) -c $(SRCS)
-	@$(CC) $(FLAGS) -o $(NAME) $(OBJS) $(LIB)
+	@$(CC) -c $(FLAGS2) $(SRCS)
+	@$(CC) $(FLAGS1) $(FLAGS2) -o $(NAME) $(OBJS) $(LIB)
 	@echo "\033[1;91mCompilation complete !\033[0m" 
 
 clean:

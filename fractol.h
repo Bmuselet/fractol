@@ -6,7 +6,7 @@
 /*   By: bmuselet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/12 14:09:05 by bmuselet          #+#    #+#             */
-/*   Updated: 2017/12/12 18:15:22 by bmuselet         ###   ########.fr       */
+/*   Updated: 2017/12/13 12:29:21 by bmuselet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,16 +31,34 @@
 # define ORANGE 0x00FFA500
 # define BLACK 0x000000
 
-
-typedef struct		s_mlx
+typedef struct			s_mlx
 {
-	void			*mlx;
-	void			*win;
-}					t_mlx;
+	void				*mlx;
+	void				*win;
+	void				*img;
+	int					bpp;
+	int					s_l;
+	int					endian;
+	int					*img_str;
+	double				x1;
+	double				x2;
+	double				y1;
+	double				y2;
+	double				zoom;
+	int					iter_max;
+	double				image_x;
+	double				image_y;
+	double				c_r;
+	double				c_i;
+	double				z_r;
+	double				z_i;
+	double				tmp;
+}						t_mlx;
 
-int	ft_key_events(int keycode, t_mlx *mlx);
-int	mandelbrot(void);
-int	buddhabrot(void);
-int	julia(void);
+int						ft_key_events(int keycode);
+int						mandelbrot(t_mlx mlx);
+int						buddhabrot(t_mlx mlx);
+int						julia(t_mlx mlx);
+void					fill_pixel(int *str, int x, int y, int color);
 
 #endif

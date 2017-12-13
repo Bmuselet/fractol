@@ -6,19 +6,15 @@
 /*   By: bmuselet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/12 18:12:02 by bmuselet          #+#    #+#             */
-/*   Updated: 2017/12/12 18:17:15 by bmuselet         ###   ########.fr       */
+/*   Updated: 2017/12/13 12:34:47 by bmuselet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
-int	buddhabrot(void)
+int	buddhabrot(t_mlx mlx)
 {
-	t_mlx	mlx;
 	double x, y;
-	double	x1, x2, y1, y2, zoom, iter_max;
-	double image_x, image_y;
-	double c_r, c_i, z_r, z_i, tmp;
 	int i;
 
 	const unsigned int COLOR_TABLE[] = {
@@ -38,45 +34,42 @@ int	buddhabrot(void)
 		0xd5b1, 0x0410, 0xddfb, 0xfb08, 0x471a, 0xec1d, 0xd112, 0xf6f6, 0xffff, 0xf7be,
 		0xffe0, 0x9e66, 0x0000
 	};
-
-	mlx.mlx = mlx_init();
-	mlx.win = mlx_new_window(mlx.mlx, WIN_WIDTH, WIN_HEIGHT, "win fdf");
-
-	x1 = -2.1;
-	x2 = 0.6;
-	y1 = -1.2;
-	y2 = 1.2;
-	zoom = 100;
-	iter_max = 100;
-	image_x = (x2 - x1) * zoom;
-	image_y = (y2 - y1) * zoom;
+	mlx.x1 = -2.5;
+	mlx.x2 = 1;
+	mlx.y1 = -1;
+	mlx.y2 = 1;
+	mlx.zoom = 300;
+	mlx.iter_max = 1000;
+	mlx.image_x = (mlx.x2 - mlx.x1) * mlx.zoom;
+	mlx.image_y = (mlx.y2 - mlx.y1) * mlx.zoom;
 
 	x = 0;
-	while (x < image_x)
+	while (x < mlx.image_x)
 	{
 		y = 0;
-		while (y < image_y)
+		while (y < mlx.image_y)
 		{
-			c_r = zoom + x1;
-			c_i = y / zoom + y1;
-			z_r = 0;
-			z_i = 0;
+			mlx.c_r = mlx.zoom + mlx.x1;
+			mlx.c_i = y / mlx.zoom + mlx.y1;
+			mlx.z_r = 0;
+			mlx.z_i = 0;
 			i = 0;
-			while (z_r * z_r + z_i * z_i < 4 && i < iter_max)
+			while (mlx.z_r * mlx.z_r + mlx.z_i * mlx.z_i < 4 && i < mlx.iter_max)
 			{
-				tmp = z_r;
-				z_r = z_r * z_r - z_i * z_i + c_r;
-				z_i = 2 * tmp * z_i + c_i;
+				mlx.tmp = mlx.z_r;
+				mlx.z_r = mlx.z_r * mlx.z_r - mlx.z_i * mlx.z_i + mlx.c_r;
+				mlx.z_i = 2 * mlx.tmp * mlx.z_i + mlx.c_i;
 				i++;
 			}
-			if (i == iter_max)
-				mlx_pixel_put(mlx.mlx, mlx.win, x, y, BLACK);
+			if (i == mlx.iter_max)
+				fill_pixel(mlx.img_str, x, y, BLACK);
 			else
-				mlx_pixel_put(mlx.mlx, mlx.win, x, y, COLOR_TABLE[i]);
+				fill_pixel(mlx.img_str, x, y, COLOR_TABLE[i]);
 			y++;
 		}
 		x++;
 	}
+	mlx_put_image_to_window(mlx.mlx, mlx.win, mlx.img, 0, 0);
 	mlx_key_hook(mlx.win, ft_key_events, &mlx);
 	mlx_loop(mlx.mlx);
 	return (0);
