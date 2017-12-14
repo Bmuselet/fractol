@@ -6,7 +6,7 @@
 /*   By: bmuselet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/12 18:12:02 by bmuselet          #+#    #+#             */
-/*   Updated: 2017/12/13 12:34:47 by bmuselet         ###   ########.fr       */
+/*   Updated: 2017/12/14 17:46:03 by bmuselet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 int	buddhabrot(t_mlx mlx)
 {
-	double x, y;
 	int i;
 
 	const unsigned int COLOR_TABLE[] = {
@@ -34,23 +33,22 @@ int	buddhabrot(t_mlx mlx)
 		0xd5b1, 0x0410, 0xddfb, 0xfb08, 0x471a, 0xec1d, 0xd112, 0xf6f6, 0xffff, 0xf7be,
 		0xffe0, 0x9e66, 0x0000
 	};
-	mlx.x1 = -2.5;
-	mlx.x2 = 1;
+	mlx.x1 = -1.5;
+	mlx.x2 = 1.5;
 	mlx.y1 = -1;
 	mlx.y2 = 1;
-	mlx.zoom = 300;
 	mlx.iter_max = 1000;
-	mlx.image_x = (mlx.x2 - mlx.x1) * mlx.zoom;
-	mlx.image_y = (mlx.y2 - mlx.y1) * mlx.zoom;
+	mlx.image_x = WIN_WIDTH;//(mlx.x2 - mlx.x1) * mlx.zoom;
+	mlx.image_y = WIN_HEIGHT;//(mlx.y2 - mlx.y1) * mlx.zoom;
 
-	x = 0;
-	while (x < mlx.image_x)
+	mlx.x = 0;
+	while (mlx.x < mlx.image_x)
 	{
-		y = 0;
-		while (y < mlx.image_y)
+		mlx.y = 0;
+		while (mlx.y < mlx.image_y)
 		{
-			mlx.c_r = mlx.zoom + mlx.x1;
-			mlx.c_i = y / mlx.zoom + mlx.y1;
+			mlx.c_r = mlx.x / mlx.zoom + mlx.x1;
+			mlx.c_i = mlx.y / mlx.zoom + mlx.y1;
 			mlx.z_r = 0;
 			mlx.z_i = 0;
 			i = 0;
@@ -62,15 +60,13 @@ int	buddhabrot(t_mlx mlx)
 				i++;
 			}
 			if (i == mlx.iter_max)
-				fill_pixel(mlx.img_str, x, y, BLACK);
+				fill_pixel(mlx.img_str, mlx.x, mlx.y, BLACK);
 			else
-				fill_pixel(mlx.img_str, x, y, COLOR_TABLE[i]);
-			y++;
+				fill_pixel(mlx.img_str, mlx.x, mlx.y, COLOR_TABLE[i]);
+			mlx.y++;
 		}
-		x++;
+		mlx.x++;
 	}
 	mlx_put_image_to_window(mlx.mlx, mlx.win, mlx.img, 0, 0);
-	mlx_key_hook(mlx.win, ft_key_events, &mlx);
-	mlx_loop(mlx.mlx);
 	return (0);
 }

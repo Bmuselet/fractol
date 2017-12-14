@@ -6,7 +6,7 @@
 #    By: bmuselet <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/11/28 15:19:34 by bmuselet          #+#    #+#              #
-#    Updated: 2017/12/13 12:29:30 by bmuselet         ###   ########.fr        #
+#    Updated: 2017/12/13 15:08:25 by bmuselet         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,6 +17,7 @@ SRCS = main.c\
 	   buddhabrot.c\
 	   julia.c\
 	   ft_fill_pixel.c\
+	   mouse_hook.c\
 
 OBJS = $(SRCS:.c=.o)
 INC = libft.h\

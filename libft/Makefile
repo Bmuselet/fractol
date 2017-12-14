@@ -6,7 +6,7 @@
 #    By: bmuselet <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/11/07 18:25:11 by bmuselet          #+#    #+#              #
-#    Updated: 2017/11/28 17:10:26 by bmuselet         ###   ########.fr        #
+#    Updated: 2017/12/13 14:55:34 by bmuselet         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -82,17 +82,13 @@ OBJS = 		$(SRCS:.c=.o)
 all: $(NAME)
 
 $(NAME):
-	@echo "\033[1;91mCompilation...\033[0m"
 	@$(CC) $(CFLAG) -c $(SRCS)
 	@ar rc $(NAME) $(OBJS)
-	@echo "\033[1;91mCompilation complete !\033[0m"
 
 clean:
 	@/bin/rm -f $(OBJS)
-	@echo "\033[1;91m$(OBJ) removed !\033[0m"
 
 fclean: clean
 	@/bin/rm -f $(NAME)
-	@echo "\033[1;91m$(NAME) removed !\033[0m"
 
 re: fclean all

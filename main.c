@@ -6,7 +6,7 @@
 /*   By: bmuselet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/28 17:05:17 by bmuselet          #+#    #+#             */
-/*   Updated: 2017/12/13 12:32:23 by bmuselet         ###   ########.fr       */
+/*   Updated: 2017/12/14 17:57:13 by bmuselet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@ int	main(int ac, char **av)
 {
 	t_mlx	mlx;
 
+	mlx.color_value = 1;
+	mlx.zoom = WIN_WIDTH / 4;
 	mlx.mlx = mlx_init();
 	mlx.win = mlx_new_window(mlx.mlx, WIN_WIDTH, WIN_HEIGHT, "Fractol");
 	mlx.img = mlx_new_image(mlx.mlx, WIN_WIDTH, WIN_HEIGHT);
@@ -31,7 +33,10 @@ int	main(int ac, char **av)
 		julia(mlx);
 	if (ft_strcmp(av[1], "buddhabrot") == 0)
 		buddhabrot(mlx);
-	else
-		ft_putstr("This fractale does not exist ... yet !!\nExisting file :\nmandelbrot\njulia\nbuddhabrot\n");
+	//	else
+	//		ft_putstr("This fractale does not exist ... yet !!\nExisting file :\nmandelbrot\njulia\nbuddhabrot\n");
+	mlx_key_hook(mlx.win, ft_key_events, &mlx);
+	mlx_mouse_hook(mlx.win, ft_mouse_events, &mlx);
+	mlx_loop(mlx.mlx);
 	return (0);
 }
