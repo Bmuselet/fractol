@@ -18,7 +18,7 @@ void		ft_init_buddhabrot(t_mlx *mlx)
 	mlx->x2 = 1.5;
 	mlx->y1 = -1;
 	mlx->y2 = 1;
-	mlx->iter_max = 250;
+	mlx->iter_max = 50;
 	mlx->image_x = WIN_WIDTH;
 	mlx->image_y = WIN_HEIGHT;
 	mlx->zoom_x = WIN_WIDTH / (mlx->x2 - mlx->x1);

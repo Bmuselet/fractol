@@ -63,7 +63,7 @@ int			main(int ac, char **av)
 	mlx.num_f = -1;
 	mlx.color_value = 1;
 	mlx.mlx = mlx_init();
-	mlx.win = mlx_new_window(mlx.mlx, WIN_WIDTH, WIN_HEIGHT, "Fractol");
+	mlx.win = mlx_new_window(mlx.mlx, WIN_WIDTH, WIN_HEIGHT, "Fractol 42");
 	mlx.img = mlx_new_image(mlx.mlx, WIN_WIDTH, WIN_HEIGHT);
 	mlx.img_str = (int *)mlx_get_data_addr(mlx.img,
 		&(mlx.bpp), &(mlx.s_l), &(mlx.endian));
@@ -76,9 +76,9 @@ int			main(int ac, char **av)
 		return (0);
 	else
 		ft_begin_frac(&mlx);
-	mlx_key_hook(mlx.win, ft_key_events, &mlx);
 	mlx_hook(mlx.win, 4, 1L << 12, ft_mouse_zoom, &mlx);
 	mlx_hook(mlx.win, 6, 1L << 6, ft_move_julia, &mlx);
+	mlx_hook(mlx.win, 2, 1L << 0, ft_key_events, &mlx);
 	mlx_loop(mlx.mlx);
 	return (0);
 }

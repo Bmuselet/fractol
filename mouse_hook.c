@@ -12,14 +12,8 @@
 
 #include "fractol.h"
 
-int	ft_mouse_zoom(int button, int x, int y, t_mlx *mlx)
+static int	ft_mouse_zoom2(int button, t_mlx *mlx)
 {
-	if (x >= WIN_WIDTH || y >= WIN_HEIGHT || x <= 0 || y <= 0)
-		return (0);
-	mlx->tmp_x1 = mlx->x1 + x * (mlx->x2 - mlx->x1) / WIN_WIDTH;
-	mlx->tmp_y1 = mlx->y1 + y * (mlx->y2 - mlx->y1) / WIN_HEIGHT;
-	mlx->tmp_x2 = mlx->x1;
-	mlx->tmp_y2 = mlx->y1;
 	if (button == 4)
 	{
 		mlx->zoom_x += mlx->zoom_x * 1.15;
@@ -40,19 +34,31 @@ int	ft_mouse_zoom(int button, int x, int y, t_mlx *mlx)
 		mlx->y2 = mlx->tmp_y1 + (mlx->y2 - mlx->tmp_y2);
 		mlx->nb_zoom--;
 	}
+	return (0);
+}
+
+int			ft_mouse_zoom(int button, int x, int y, t_mlx *mlx)
+{
+	if (x >= WIN_WIDTH || y >= WIN_HEIGHT || x <= 0 || y <= 0)
+		return (0);
+	mlx->tmp_x1 = mlx->x1 + x * (mlx->x2 - mlx->x1) / WIN_WIDTH;
+	mlx->tmp_y1 = mlx->y1 + y * (mlx->y2 - mlx->y1) / WIN_HEIGHT;
+	mlx->tmp_x2 = mlx->x1;
+	mlx->tmp_y2 = mlx->y1;
+	ft_mouse_zoom2(button, mlx);
 	mlx_destroy_image(mlx->mlx, mlx->img);
 	mlx->img = mlx_new_image(mlx->mlx, WIN_WIDTH, WIN_HEIGHT);
 	ft_draw(mlx);
 	return (0);
 }
 
-int	ft_move_julia(int x, int y, t_mlx *mlx)
+int			ft_move_julia(int x, int y, t_mlx *mlx)
 {
 	if (x <= WIN_WIDTH && y <= WIN_HEIGHT && x >= 0 && y >= 0
 		&& mlx->num_f == 2 && mlx->lock == 0)
 	{
-		mlx->c_r = (double)x / (double)WIN_WIDTH * 4 - 1;
-		mlx->c_i = (double)y / (double)WIN_HEIGHT * 4 - 1;
+		mlx->c_r = (double)x / (double)WIN_WIDTH * 3 - 1;
+		mlx->c_i = (double)y / (double)WIN_HEIGHT * 3 - 1;
 		mlx_destroy_image(mlx->mlx, mlx->img);
 		mlx->img = mlx_new_image(mlx->mlx, WIN_WIDTH, WIN_HEIGHT);
 		ft_draw(mlx);

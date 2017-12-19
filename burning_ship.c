@@ -22,7 +22,7 @@ void		ft_init_burning_ship(t_mlx *mlx)
 	mlx->image_y = WIN_HEIGHT;
 	mlx->zoom_x = WIN_WIDTH * 10;
 	mlx->zoom_y = WIN_WIDTH * 10;
-	mlx->iter_max = 100;
+	mlx->iter_max = 50;
 }
 
 static void	ft_burning_ship_iter(t_mlx *mlx)
