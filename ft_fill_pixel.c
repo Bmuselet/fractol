@@ -12,7 +12,7 @@
 
 #include "fractol.h"
 
-void	fill_pixel(int *str, int x, int y, int color)
+void			fill_pixel(int *str, int x, int y, int color)
 {
 	int i;
 
@@ -23,7 +23,7 @@ void	fill_pixel(int *str, int x, int y, int color)
 unsigned int	get_color(int i, t_mlx *mlx)
 {
 	unsigned int	c;
-	unsigned char		r;
+	unsigned char	r;
 	unsigned char	g;
 	unsigned char	b;
 

@@ -18,6 +18,7 @@ SRCS = main.c\
 	   julia.c\
 	   ft_fill_pixel.c\
 	   mouse_hook.c\
+	   burning_ship.c\
 
 OBJS = $(SRCS:.c=.o)
 INC = libft.h\

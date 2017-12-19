@@ -6,37 +6,79 @@
 /*   By: bmuselet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/28 17:05:17 by bmuselet          #+#    #+#             */
-/*   Updated: 2017/12/14 17:57:13 by bmuselet         ###   ########.fr       */
+/*   Updated: 2017/12/19 10:52:16 by bmuselet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
-int	main(int ac, char **av)
+void		ft_draw(t_mlx *mlx)
+{
+	if (mlx->num_f == 1)
+		ft_draw_mandelbrot(mlx);
+	else if (mlx->num_f == 2)
+		ft_draw_julia(mlx);
+	else if (mlx->num_f == 3)
+		ft_draw_buddhabrot(mlx);
+	else if (mlx->num_f == 4)
+		ft_draw_burning_ship(mlx);
+}
+
+void		ft_begin_frac(t_mlx *mlx)
+{
+	if (mlx->num_f == 1)
+		ft_init_mandelbrot(mlx);
+	else if (mlx->num_f == 2)
+		ft_init_julia(mlx);
+	else if (mlx->num_f == 3)
+		ft_init_buddhabrot(mlx);
+	else if (mlx->num_f == 4)
+		ft_init_burning_ship(mlx);
+	ft_draw(mlx);
+}
+
+static int	ft_check_error(char **av, t_mlx *mlx)
+{
+	if (ft_strcmp(av[1], "mandelbrot") == 0)
+		mlx->num_f = 1;
+	if (ft_strcmp(av[1], "julia") == 0)
+		mlx->num_f = 2;
+	if (ft_strcmp(av[1], "buddhabrot") == 0)
+		mlx->num_f = 3;
+	if (ft_strcmp(av[1], "burning_ship") == 0)
+		mlx->num_f = 4;
+	if (mlx->num_f == -1)
+	{
+		ft_putstr(
+			"Existing file:\nmandelbrot\njulia\nbuddhabrot\nburning_ship\n");
+		return (1);
+	}
+	return (0);
+}
+
+int			main(int ac, char **av)
 {
 	t_mlx	mlx;
 
+	mlx.num_f = -1;
 	mlx.color_value = 1;
-	mlx.zoom = WIN_WIDTH / 4;
 	mlx.mlx = mlx_init();
 	mlx.win = mlx_new_window(mlx.mlx, WIN_WIDTH, WIN_HEIGHT, "Fractol");
 	mlx.img = mlx_new_image(mlx.mlx, WIN_WIDTH, WIN_HEIGHT);
-	mlx.img_str = (int *)mlx_get_data_addr(mlx.img, &(mlx.bpp), &(mlx.s_l), &(mlx.endian));
+	mlx.img_str = (int *)mlx_get_data_addr(mlx.img,
+		&(mlx.bpp), &(mlx.s_l), &(mlx.endian));
 	if (ac != 2)
 	{
 		ft_putstr("Usage : ./fractol <source.file>\n");
 		return (0);
 	}
-	if (ft_strcmp(av[1], "mandelbrot") == 0)
-		mandelbrot(mlx);
-	if (ft_strcmp(av[1], "julia") == 0)
-		julia(mlx);
-	if (ft_strcmp(av[1], "buddhabrot") == 0)
-		buddhabrot(mlx);
-	//	else
-	//		ft_putstr("This fractale does not exist ... yet !!\nExisting file :\nmandelbrot\njulia\nbuddhabrot\n");
+	if (ft_check_error(av, &mlx) == 1)
+		return (0);
+	else
+		ft_begin_frac(&mlx);
 	mlx_key_hook(mlx.win, ft_key_events, &mlx);
-	mlx_mouse_hook(mlx.win, ft_mouse_events, &mlx);
+	mlx_hook(mlx.win, 4, 1L << 12, ft_mouse_zoom, &mlx);
+	mlx_hook(mlx.win, 6, 1L << 6, ft_move_julia, &mlx);
 	mlx_loop(mlx.mlx);
 	return (0);
 }
