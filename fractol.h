@@ -54,7 +54,6 @@ typedef struct	s_mlx
 	double		tmp_y2;
 	double		zoom_x;
 	double		zoom_y;
-	int			nb_zoom;
 	int			image_x;
 	int			image_y;
 	int			iter_max;

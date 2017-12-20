@@ -23,7 +23,6 @@ void		ft_init_julia(t_mlx *mlx)
 	mlx->iter_max = 50;
 	mlx->image_x = WIN_WIDTH;
 	mlx->image_y = WIN_HEIGHT;
-	mlx->nb_zoom = 0;
 	mlx->zoom_x = WIN_WIDTH / (mlx->x2 - mlx->x1);
 	mlx->zoom_y = WIN_HEIGHT / (mlx->y2 - mlx->y1);
 }

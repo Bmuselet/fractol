@@ -22,13 +22,11 @@ static int	ft_mouse_zoom2(int button, t_mlx *mlx)
 		mlx->y1 = mlx->tmp_y1 - (mlx->y2 - mlx->y1) / 4;
 		mlx->x2 = mlx->tmp_x1 + (mlx->x2 - mlx->tmp_x2) / 4;
 		mlx->y2 = mlx->tmp_y1 + (mlx->y2 - mlx->tmp_y2) / 4;
-		mlx->nb_zoom++;
 	}
-	if (button == 5 && mlx->nb_zoom > 0)
+	if (button == 5)
 	{
 		mlx->zoom_x -= mlx->zoom_x * 0.45;
 		mlx->zoom_y -= mlx->zoom_y * 0.45;
-		mlx->nb_zoom--;
 	}
 	return (0);
 }
