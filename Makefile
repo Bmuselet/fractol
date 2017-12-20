@@ -19,6 +19,7 @@ SRCS = main.c\
 	   ft_fill_pixel.c\
 	   mouse_hook.c\
 	   burning_ship.c\
+	   spine.c\
 
 OBJS = $(SRCS:.c=.o)
 INC = libft.h\

@@ -16,7 +16,7 @@ static void	change_fractal_or_color(int keycode, t_mlx *mlx)
 {
 	if (keycode == 48)
 	{
-		if (mlx->num_f < 4)
+		if (mlx->num_f < 5)
 			mlx->num_f += 1;
 		else
 			mlx->num_f = 1;
@@ -82,7 +82,6 @@ static void	ft_key_zoom(int keycode, t_mlx *mlx)
 
 int			ft_key_events(int keycode, t_mlx *mlx)
 {
-	printf("%d ", keycode);
 	if (keycode == 116 || keycode == 121 || keycode == 24 || keycode == 27)
 		ft_key_zoom(keycode, mlx);
 	if (keycode == 53 || keycode == 51 || keycode == 49)

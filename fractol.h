@@ -83,5 +83,8 @@ void			ft_init_burning_ship(t_mlx *mlx);
 void			ft_begin_frac(t_mlx *mlx);
 int				ft_mouse_zoom(int button, int x, int y, t_mlx *mlx);
 int				ft_move_julia(int x, int y, t_mlx *mlx);
+int				ft_draw_spine(t_mlx *mlx);
+void			ft_init_spine(t_mlx *mlx);
+int				ft_expose_hook(t_mlx *mlx);
 
 #endif
