@@ -29,11 +29,13 @@ int			ft_expose_hook(t_mlx *mlx)
 		mlx_pixel_put(mlx->mlx, mlx->win, x, y--, WHITE);
 	mlx_string_put(mlx->mlx, mlx->win, 35, 35, WHITE, "Quit = ESC");
 	mlx_string_put(mlx->mlx, mlx->win, 35, 55, WHITE, "Move = ^ v < >");
-	mlx_string_put(mlx->mlx, mlx->win, 35, 75, WHITE, "Zoom = PageUp PageDown or Scroll");
+	mlx_string_put(mlx->mlx, mlx->win, 35, 75,
+		WHITE, "Zoom = PageUp PageDown or Scroll");
 	mlx_string_put(mlx->mlx, mlx->win, 35, 95, WHITE, "Change color = c");
 	mlx_string_put(mlx->mlx, mlx->win, 35, 115, WHITE, "Change fractal = TAB");
 	mlx_string_put(mlx->mlx, mlx->win, 35, 135, WHITE, "Reset = Backspace");
-	mlx_string_put(mlx->mlx, mlx->win, 35, 155, WHITE, "More/Less iterations = +/-");
+	mlx_string_put(mlx->mlx, mlx->win, 35, 155,
+		WHITE, "More/Less iterations = +/-");
 	mlx_string_put(mlx->mlx, mlx->win, 35, 175, WHITE, "De/lock Julia = Space");
 	return (0);
 }
