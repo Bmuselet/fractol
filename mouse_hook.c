@@ -26,12 +26,8 @@ static int	ft_mouse_zoom2(int button, t_mlx *mlx)
 	}
 	if (button == 5 && mlx->nb_zoom > 0)
 	{
-		mlx->zoom_x -= mlx->zoom_x * 0.15;
-		mlx->zoom_y -= mlx->zoom_y * 0.15;
-		mlx->x1 = mlx->tmp_x1 - (mlx->x2 - mlx->x1);
-		mlx->y1 = mlx->tmp_y1 - (mlx->y2 - mlx->y1);
-		mlx->x2 = mlx->tmp_x1 + (mlx->x2 - mlx->tmp_x2);
-		mlx->y2 = mlx->tmp_y1 + (mlx->y2 - mlx->tmp_y2);
+		mlx->zoom_x -= mlx->zoom_x * 0.45;
+		mlx->zoom_y -= mlx->zoom_y * 0.45;
 		mlx->nb_zoom--;
 	}
 	return (0);
@@ -46,8 +42,6 @@ int			ft_mouse_zoom(int button, int x, int y, t_mlx *mlx)
 	mlx->tmp_x2 = mlx->x1;
 	mlx->tmp_y2 = mlx->y1;
 	ft_mouse_zoom2(button, mlx);
-	mlx_destroy_image(mlx->mlx, mlx->img);
-	mlx->img = mlx_new_image(mlx->mlx, WIN_WIDTH, WIN_HEIGHT);
 	ft_draw(mlx);
 	return (0);
 }
@@ -57,10 +51,8 @@ int			ft_move_julia(int x, int y, t_mlx *mlx)
 	if (x <= WIN_WIDTH && y <= WIN_HEIGHT && x >= 0 && y >= 0
 		&& mlx->num_f == 2 && mlx->lock == 0)
 	{
-		mlx->c_r = (double)x / (double)WIN_WIDTH * 3 - 1;
-		mlx->c_i = (double)y / (double)WIN_HEIGHT * 3 - 1;
-		mlx_destroy_image(mlx->mlx, mlx->img);
-		mlx->img = mlx_new_image(mlx->mlx, WIN_WIDTH, WIN_HEIGHT);
+		mlx->c_r = (double)x / (double)WIN_WIDTH * 4 - 2;
+		mlx->c_i = (double)y / (double)WIN_HEIGHT * 4 - 2;
 		ft_draw(mlx);
 	}
 	return (0);

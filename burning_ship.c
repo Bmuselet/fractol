@@ -14,15 +14,16 @@
 
 void		ft_init_burning_ship(t_mlx *mlx)
 {
-	mlx->x1 = -1.813659;
+	mlx->x1 = -2.5;
 	mlx->x2 = 1;
-	mlx->y1 = -0.086517;
-	mlx->y2 = 1.2;
+	mlx->y1 = -1;
+	mlx->y2 = 1;
+	mlx->iter_max = 50;
 	mlx->image_x = WIN_WIDTH;
 	mlx->image_y = WIN_HEIGHT;
-	mlx->zoom_x = WIN_WIDTH * 10;
-	mlx->zoom_y = WIN_WIDTH * 10;
-	mlx->iter_max = 50;
+	mlx->nb_zoom = 0;
+	mlx->zoom_x = WIN_WIDTH / (mlx->x2 - mlx->x1);
+	mlx->zoom_y = WIN_HEIGHT / (mlx->y2 - mlx->y1);
 }
 
 static void	ft_burning_ship_iter(t_mlx *mlx)

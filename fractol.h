@@ -14,7 +14,6 @@
 # define FRACTOL_H
 
 # include <stdlib.h>
-# include <pthread.h>
 # include "libft/libft.h"
 # include <unistd.h>
 # include "mlx.h"
@@ -84,4 +83,5 @@ void			ft_init_burning_ship(t_mlx *mlx);
 void			ft_begin_frac(t_mlx *mlx);
 int				ft_mouse_zoom(int button, int x, int y, t_mlx *mlx);
 int				ft_move_julia(int x, int y, t_mlx *mlx);
+
 #endif

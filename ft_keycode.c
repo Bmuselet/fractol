@@ -11,7 +11,6 @@
 /* ************************************************************************** */
 
 #include "fractol.h"
-#include <stdio.h>
 
 static void	change_fractal_or_color(int keycode, t_mlx *mlx)
 {
@@ -21,15 +20,11 @@ static void	change_fractal_or_color(int keycode, t_mlx *mlx)
 			mlx->num_f += 1;
 		else
 			mlx->num_f = 1;
-		mlx_destroy_image(mlx->mlx, mlx->img);
-		mlx->img = mlx_new_image(mlx->mlx, WIN_WIDTH, WIN_HEIGHT);
 		ft_begin_frac(mlx);
 	}
 	if (keycode == 8)
 	{
 		mlx->color_value += 1;
-		mlx_destroy_image(mlx->mlx, mlx->img);
-		mlx->img = mlx_new_image(mlx->mlx, WIN_WIDTH, WIN_HEIGHT);
 		ft_draw(mlx);
 	}
 }
@@ -44,8 +39,6 @@ static void	move_fractal(int keycode, t_mlx *mlx)
 		mlx->y1 -= 350 / mlx->zoom_x;
 	if (keycode == 125)
 		mlx->y1 += 350 / mlx->zoom_x;
-	mlx_destroy_image(mlx->mlx, mlx->img);
-	mlx->img = mlx_new_image(mlx->mlx, WIN_WIDTH, WIN_HEIGHT);
 	ft_draw(mlx);
 }
 
@@ -84,8 +77,6 @@ static void	ft_key_zoom(int keycode, t_mlx *mlx)
 		mlx->zoom_x -= mlx->zoom_x * 0.5 / 2;
 		mlx->zoom_y -= mlx->zoom_y * 0.5 / 2;
 	}
-	mlx_destroy_image(mlx->mlx, mlx->img);
-	mlx->img = mlx_new_image(mlx->mlx, WIN_WIDTH, WIN_HEIGHT);
 	ft_draw(mlx);
 }
 
