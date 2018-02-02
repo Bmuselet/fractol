@@ -25,7 +25,7 @@ OBJS = $(SRCS:.c=.o)
 INC = libft.h\
 fractol.h\
 CC = cc
-FLAGS1 := -lmlx -framework OpenGl -framework AppKit
+FLAGS1 := -lmlx -framework OpenGl -framework AppKit -flto
 FLAGS2 := -Wall -Werror -Wextra
 LIB_PATH = libft/
 LIB = libft/libft.a
